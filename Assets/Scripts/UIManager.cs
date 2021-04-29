@@ -1,0 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIManager : MonoBehaviour
+{
+    [SerializeField]
+    private Text _soreText;
+    [SerializeField]
+    private Image _livesImg;
+    [SerializeField]
+    private Sprite[] _liveSprite;
+    [SerializeField]
+    private Text _gameOverText;
+    [SerializeField]
+    private Text _restartText;
+
+    private GameManager _gameManager;
+    void Start()
+    {
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+
+        if (_gameManager == null)
+            Debug.Log("Game Manager not found");
+        _soreText.text = "Score: " + 0;
+        _gameOverText.gameObject.SetActive(false);
+        _restartText.gameObject.SetActive(false);
+    }
+
+
+    public void UpdateScore(int playerScore)
+    {
+        _soreText.text = "Score " + playerScore.ToString();
+    }
+
+
+    public void UpdateLives(int currentLives)
+    {
+        _livesImg.sprite = _liveSprite[currentLives];
+
+        if(currentLives == 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        _gameOverText.gameObject.SetActive(true);
+        _restartText.gameObject.SetActive(true);
+        StartCoroutine(Flickering());
+        _gameManager.GameOver();
+
+    }
+
+
+    private IEnumerator Flickering()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            _gameOverText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1);
+            _gameOverText.gameObject.SetActive(true);
+        }
+    }
+}
