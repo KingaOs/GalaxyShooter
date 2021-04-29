@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 5f;
-    private float _speedMultiplier;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -80,6 +79,14 @@ public class Player : MonoBehaviour
             Application.Quit();
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _speed = 10;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speed = 5;
+        }
 
     }
 
