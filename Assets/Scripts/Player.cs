@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     private bool _isShieldActive;
     [SerializeField]
     private GameObject _shield;
+    
+    private int _shieldCount;
 
     [SerializeField]
     private List<GameObject> _engines = new List<GameObject>();
@@ -128,8 +130,14 @@ public class Player : MonoBehaviour
     {
         if (_isShieldActive)
         {
-            _isShieldActive = false;
-            _shield.SetActive(false);
+            _shieldCount -= 1;
+            _uiManager.UpdateShield(_shieldCount);
+            if (_shieldCount == 0)
+            {
+                _isShieldActive = false;
+                _shield.SetActive(false);
+              
+            }
             return;
         }
         _lives -= 1;
@@ -180,6 +188,8 @@ public class Player : MonoBehaviour
     {
         _isShieldActive = true;
         _shield.SetActive(true);
+        _shieldCount = 3;
+        _uiManager.UpdateShield(_shieldCount);
     }
 
     public void AddScore(int points)
