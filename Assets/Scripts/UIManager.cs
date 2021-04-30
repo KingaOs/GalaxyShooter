@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     private Image _shieldImg;
 
     private GameManager _gameManager;
+    [SerializeField]
+    private Text _ammoCountText;
+
     void Start()
     {
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
@@ -60,7 +63,11 @@ public class UIManager : MonoBehaviour
             _shieldImg.gameObject.SetActive(false);
     }
 
+    public void UpdateAmmoCount(int ammoCount)
+    {
+        _ammoCountText.text = ammoCount.ToString();
 
+    }
 
     private void GameOver()
     {

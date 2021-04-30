@@ -40,13 +40,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
+
+    private int _ammoCount = 15;
+    [SerializeField]
+    private AudioClip _noAmmo;
+
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
-
+        _uiManager.UpdateAmmoCount(_ammoCount);
 
         if (_uiManager == null)
         {
@@ -111,6 +116,14 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+
+        if (_ammoCount <= 0)
+        {
+            _audioSource.clip = _noAmmo;
+            _audioSource.Play();
+            return;
+        }
+
         _canFire = Time.time + _fireRate;
 
         if (_isTripleShot)
@@ -123,6 +136,9 @@ public class Player : MonoBehaviour
         }
 
         _audioSource.Play();
+
+        _ammoCount -= 1;
+        _uiManager.UpdateAmmoCount(_ammoCount);
 
     }
 
