@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.3f, 0), Quaternion.identity);
         }
-
+        _audioSource.clip = _laserSoundEffect;
         _audioSource.Play();
 
         _ammoCount -= 1;
@@ -212,5 +212,11 @@ public class Player : MonoBehaviour
     {
         _score += points;
         _uiManager.UpdateScore(_score);
+    }
+
+    public void AmmoRefill()
+    {
+        _ammoCount = 15;
+        _uiManager.UpdateAmmoCount(_ammoCount);
     }
 }

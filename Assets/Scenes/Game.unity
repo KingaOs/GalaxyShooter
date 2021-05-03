@@ -284,7 +284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &82780880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -665,6 +665,7 @@ MonoBehaviour:
   - {fileID: 4737138799833967546, guid: 4683fcfddc455e84983f2bbc7ebdb948, type: 3}
   - {fileID: 7187676890200297960, guid: 1dca6d5d4a5163945b1b0000e3d141f7, type: 3}
   - {fileID: 140914786297036699, guid: 5a6a65e6a411792449c8c51d66d74ced, type: 3}
+  - {fileID: 851647490386960051, guid: 0513ea18655258347a1e8837e109e9da, type: 3}
 --- !u!4 &281739597
 Transform:
   m_ObjectHideFlags: 0
@@ -2085,7 +2086,7 @@ PrefabInstance:
     - target: {fileID: 1274147464789267718, guid: 2c0bbac93dd4eeb4bb51716272ea5d3d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2489702156097638019, guid: 2c0bbac93dd4eeb4bb51716272ea5d3d,
         type: 3}
